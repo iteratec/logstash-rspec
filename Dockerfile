@@ -20,4 +20,5 @@ RUN git clone https://github.com/elastic/logstash.git $PATH_LOGSTASH_HOME && \
 
 VOLUME ["$PATH_LOGSTASH_HOME/filters-under-test", "$PATH_LOGSTASH_HOME/rspec-tests"]
 
-ENTRYPOINT ["/opt/logstash/bin/rspec", "-P", "/opt/logstash/rspec-tests/**/*_spec.rb"]
+CMD [ "/opt/logstash/rspec-tests/**/*_spec.rb" ]
+ENTRYPOINT ["/opt/logstash/bin/rspec", "-P"]

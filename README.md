@@ -11,6 +11,20 @@ You may use the image to run a container as an executable which runs your rspec 
             -v <your-rspec-folder>:/opt/logstash/rspec-tests  \
             iteratec/logstash-rspec:7.3.0
 
+If you want to run just the files from a single file you may achieve this by passing a parameter:
+
+        docker run --rm --name logstash-rspecs \
+            -v <your-filter-folder>:/opt/logstash/filters-under-test \
+            -v <your-rspec-folder>:/opt/logstash/rspec-tests  \
+            iteratec/logstash-rspec:7.3.0 <YOUR-TEST-FILE_spec.rb>
+
+Or if you wish to use some other rspec options like [formatting](https://relishapp.com/rspec/rspec-core/v/3-3/docs/command-line/format-option) you may just append them:
+
+        docker run --rm --name logstash-rspecs \
+            -v <your-filter-folder>:/opt/logstash/filters-under-test \
+            -v <your-rspec-folder>:/opt/logstash/rspec-tests  \
+            iteratec/logstash-rspec:7.3.0 --format documentation
+
 Examples of rspec tests may be found [in logstash project](https://github.com/elastic/logstash/tree/master/spec) itself or in [this blogpost](https://gquintana.github.io/2016/09/07/Testing-Logstash-configuration.html). Respective the examples within the latter, one will have to reference the filter config file to test, within mounted volume under `optlogstashfilters-under-test`:
 
         @@configuration << File.read("/opt/logstash/filters-under-test/<your-filter-conf-to-test>")
