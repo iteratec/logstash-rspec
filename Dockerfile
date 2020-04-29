@@ -3,7 +3,7 @@ LABEL maintainer="nils.kuhn@iteratec.com"
 
 USER root:root
 
-ARG LOGSTASH_VERSION=7.3.0
+ARG LOGSTASH_VERSION=7.6.2
 ARG PATH_LOGSTASH_HOME=/opt/logstash
 WORKDIR /opt/logstash
 
@@ -18,7 +18,7 @@ RUN git clone https://github.com/elastic/logstash.git $PATH_LOGSTASH_HOME && \
     ./bin/logstash-plugin install --development && \
     rake test:install-default
 
-VOLUME ["$PATH_LOGSTASH_HOME/filters-under-test", "$PATH_LOGSTASH_HOME/rspec-tests"]
+VOLUME ["$PATH_LOGSTASH_HOME/logstash-pipes", "$PATH_LOGSTASH_HOME/rspec-tests"]
 
 CMD [ "/opt/logstash/rspec-tests/**/*_spec.rb" ]
 ENTRYPOINT ["/opt/logstash/bin/rspec", "-P"]
