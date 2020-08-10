@@ -3,7 +3,7 @@ LABEL maintainer="nils.kuhn@iteratec.com"
 
 USER root:root
 
-ARG LOGSTASH_VERSION=7.6.2
+ARG LOGSTASH_VERSION=7.8.1
 ARG PATH_LOGSTASH_HOME=/opt/logstash
 WORKDIR /opt/logstash
 
